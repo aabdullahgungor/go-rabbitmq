@@ -20,10 +20,6 @@ func main() {
 	}
 	defer ch.Close()
 
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	msgs, err := ch.Consume(
 		"TestQueue",
 		"",
@@ -33,6 +29,10 @@ func main() {
 		false,
 		nil,
 	)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	forever := make(chan bool)
 	go func() {
